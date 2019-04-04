@@ -10,13 +10,12 @@ import scala.collection.mutable.ListBuffer
 import scala.util.control._
 
 object monitorHDFS {
-  private val basePath:String=PropertiesUtil.prop.getProperty("basePath")
-  private val eles:Array[String]=PropertiesUtil.prop.getProperty("eles").split(",")
-  private val baseMd5Path = PropertiesUtil.prop.getProperty("baseMd5Path")
-  private val breakTime:Long=PropertiesUtil.prop.getProperty("breakTime").toLong
+  private val basePath: String = PropertiesUtil.basePath
+  private val eles: Array[String] = PropertiesUtil.eles
+  private val baseMd5Path = PropertiesUtil.baseMd5Path
+  private val breakTime: Long = PropertiesUtil.breakTime
 
   private val sdf = new SimpleDateFormat("yyyyMMdd")
-  //  private val date = new Date
   private val list = new util.ArrayList[String]
   private val DateS = sdf.format(new Date)
 
@@ -73,7 +72,6 @@ object monitorHDFS {
                   val flag0=HDFSReadWriteUtil.writeTXT(md5Path,md5_kv,true)
                   if(flag0){
                     PropertiesUtil.log.info("write MD5,md5_kv="+md5_kv+"(md5Path="+md5Path+")")
-//                    sparksubmit.jobsubmit_byFile(filename,splitFile,Array(filename,splitFile))
                     val signalMsgs=HDFSReadWriteUtil.readTXT(filename)
                     signalMsgs.foreach(signalMsg=>{
                       sparksubmit.jobsubmit_byMsg(signalMsg,splitFile,Array(signalMsg,splitFile))
