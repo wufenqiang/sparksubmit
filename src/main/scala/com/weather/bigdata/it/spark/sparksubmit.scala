@@ -89,13 +89,14 @@ object sparksubmit {
         .setMaster(Master)
         .setDeployMode(DeployMode)
         .setAppResource(mainJar)
-
         //        .setMainClass(mainClass1)
         .setMainClass(mainClass0)
         .setConf(SparkLauncher.DRIVER_MEMORY,driverMemorry)
         .setConf(SparkLauncher.EXECUTOR_MEMORY,executorMemorry)
         //.setConf("spark.executor.cores",executorNum)
         .setConf("spark.executor.instances",executorNum)
+        .setConf("spark.executor.extraClassPath", libsPath)
+        .setConf("spark.driver.extraClassPath", libsPath)
         .setPropertiesFile(resources)
         .setVerbose(true)
       libs.foreach(lib=>{
