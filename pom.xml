@@ -2,16 +2,39 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.weather.bigdata.it.spark</groupId>
     <artifactId>sparksubmit</artifactId>
-    <version>0.0.1-felix</version>
+    <!--<packaging>pom</packaging>-->
+    <!--<version>0.0.1-felix</version>-->
+    <version>0.0.1-SNAPSHOT</version>
     <inceptionYear>2008</inceptionYear>
+
     <properties>
         <scala.version>2.11.8</scala.version>
+        <log4j.version>1.2.17</log4j.version>
         <spark.version>2.1.1</spark.version>
         <hadoop.version>2.6.5</hadoop.version>
-        <split.version>0.0.1-felix</split.version>
-        <signal.version>0.0.1-felix</signal.version>
-        <felixfun.version>0.0.1-felix</felixfun.version>
+        <!--<split.version>0.0.1-felix</split.version>-->
+        <!--<signal.version>0.0.1-felix</signal.version>-->
+        <!--<felixfun.version>0.0.1-felix</felixfun.version>-->
+        <split.version>0.0.1-SNAPSHOT</split.version>
+        <signal.version>0.0.1-SNAPSHOT</signal.version>
+        <felixfun.version>0.0.1-SNAPSHOT</felixfun.version>
     </properties>
+
+
+    <distributionManagement>
+        <repository>
+            <id>internal</id>
+            <name>Internal Release Repository</name>
+            <url>http://220.243.129.233:9090/archiva/repository/internal/</url>
+            <!--<url>http://172.16.185.233:9090/archiva/repository/internal/</url>-->
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Internal Snapshot Repository</name>
+            <url>http://220.243.129.233:9090/archiva/repository/snapshots/</url>
+            <!--<url>http://172.16.185.233:9090/archiva/repository/snapshots/</url>-->
+        </snapshotRepository>
+    </distributionManagement>
 
     <repositories>
         <repository>
@@ -42,6 +65,11 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.hadoop</groupId>
@@ -118,6 +146,7 @@
             </plugin>
 
 
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -125,54 +154,54 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <classpathPrefix>${artifactId}_libs/</classpathPrefix>
+                            <classpathPrefix>${project.artifactId}_libs/</classpathPrefix>
                             <mainClass>com.weather.bigdata.it.spark.monitorHDFS</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
             </plugin>
-            <!--将依赖包复制出-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-dependencies</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>
-                                ${project.build.directory}/${artifactId}_libs/
-                            </outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--&lt;!&ndash;将依赖包复制出&ndash;&gt;-->
+            <!--<plugin>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-dependency-plugin</artifactId>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>copy-dependencies</id>-->
+            <!--<phase>prepare-package</phase>-->
+            <!--<goals>-->
+            <!--<goal>copy-dependencies</goal>-->
+            <!--</goals>-->
+            <!--<configuration>-->
+            <!--<outputDirectory>-->
+            <!--${project.build.directory}/${artifactId}_libs/-->
+            <!--</outputDirectory>-->
+            <!--</configuration>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--</plugin>-->
 
             <!--将依赖注入jar包内-->
             <!--<plugin>-->
-            <!--<artifactId>maven-assembly-plugin</artifactId>-->
-            <!--<configuration>-->
-            <!--<descriptorRefs>-->
-            <!--<descriptorRef>jar-with-dependencies</descriptorRef>-->
-            <!--</descriptorRefs>-->
-            <!--<archive>-->
-            <!--<manifest>-->
-            <!--&lt;!&ndash;<mainClass>com.weather.bigdata.it.spark.monitorHDFS</mainClass>&ndash;&gt;-->
-            <!--</manifest>-->
-            <!--</archive>-->
-            <!--</configuration>-->
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<id>make-assembly</id>-->
-            <!--<phase>package</phase>-->
-            <!--<goals>-->
-            <!--<goal>single</goal>-->
-            <!--</goals>-->
-            <!--</execution>-->
-            <!--</executions>-->
+                <!--<artifactId>maven-assembly-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<descriptorRefs>-->
+                        <!--<descriptorRef>jar-with-dependencies</descriptorRef>-->
+                    <!--</descriptorRefs>-->
+                    <!--<archive>-->
+                        <!--<manifest>-->
+                            <!--<mainClass>com.weather.bigdata.it.spark.sparksubmit.monitorHDFS</mainClass>-->
+                        <!--</manifest>-->
+                    <!--</archive>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>make-assembly</id>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>single</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
             <!--</plugin>-->
 
 
@@ -189,4 +218,20 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <!--<profiles>-->
+    <!--<profile>-->
+    <!--<id>dev</id>-->
+    <!--<properties>-->
+    <!--<pom.is.product>false</pom.is.product>-->
+    <!--</properties>-->
+    <!--</profile>-->
+
+    <!--<profile>-->
+    <!--<id>prd</id>-->
+    <!--<properties>-->
+    <!--<pom.is.product>true</pom.is.product>-->
+    <!--</properties>-->
+    <!--</profile>-->
+    <!--</profiles>-->
 </project>

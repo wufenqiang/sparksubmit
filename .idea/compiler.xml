@@ -10,7 +10,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="sparksubmit" target="1.8" />
+      <module name="models" target="1.5" />
+      <module name="sparksubmit" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

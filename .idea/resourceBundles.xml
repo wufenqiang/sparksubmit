@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ResourceBundleManager">
+    <file url="file://$PROJECT_DIR$/src/test/resource_out/sparksubmit_config_out.properties" />
+    <file url="file://$PROJECT_DIR$/src/test/resource_out/sparksubmit_config_out_it.properties" />
+    <file url="file://$PROJECT_DIR$/src/test/resource_out/sparksubmit_config_out_mt.properties" />
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/test/resource_out/sparksubmit_config_out.properties" />
+      <file value="file://$PROJECT_DIR$/src/test/resource_out/sparksubmit_config_out_it.properties" />
+      <file value="file://$PROJECT_DIR$/src/test/resource_out/sparksubmit_config_out_mt.properties" />
+      <base-name>sparksubmit_config_out</base-name>
+    </custom-resource-bundle>
+  </component>
+</project>

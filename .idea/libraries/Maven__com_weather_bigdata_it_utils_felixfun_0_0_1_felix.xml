@@ -8,6 +8,8 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/com/weather/bigdata/it/utils/felixfun/0.0.1-felix/felixfun-0.0.1-felix-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/../felixfun" />
+      <root url="file://$PROJECT_DIR$/../felixfun/src/main/scala" />
     </SOURCES>
   </library>
 </component>
